@@ -36,6 +36,37 @@ The system uses a **multi-agent orchestration** (Data Interpreter → Diagnostic
 ---
 *Built for productivity, engineered for reliability. Ready for the future of Industry 4.0.*
 
+## 📁 Project Structure
+```
+backend/    FastAPI service (main.py, config.py, tests/, Dockerfile, supabase_schema.sql)
+frontend/   Next.js dashboard (src/app pages, src/components, src/lib API clients)
+docker-compose.yml   Run backend + frontend together locally
+render.yaml          Render deployment blueprint
+```
+
+## ⚙️ Environment Variables (backend)
+Copy `backend/.env.example` to `backend/.env` and adjust:
+
+| Variable | Description |
+|----------|-------------|
+| `GROQ_API_KEY` | Groq API key used by the AI agents |
+| `DATABASE_URL` | SQLAlchemy URL (SQLite locally, Supabase Postgres in production) |
+| `CORS_ORIGINS` | Comma-separated allowed origins, e.g. `http://localhost:3000` (defaults to `*`) |
+| `PORT` | API port (default `8000`) |
+
+## 🧪 Tests
+```bash
+pip install pytest
+python -m pytest backend/tests
+```
+CI also type-checks the frontend (`npx tsc --noEmit`).
+
+## 🐳 Docker
+```bash
+export GROQ_API_KEY=your_key
+docker compose up --build
+```
+
 ## 🌐 Deployment Guide (Supabase + Vercel)
 
 ### 1. Database (Supabase)
