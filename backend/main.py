@@ -6,6 +6,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from config import parse_cors_origins
 from api.routes import router
 from api.websocket import router as ws_router
 
@@ -24,11 +25,12 @@ app = FastAPI(
 )
 
 # CORS
-origins = os.getenv("CORS_ORIGINS", "*").split(",")
+origins = parse_cors_origins(os.getenv("CORS_ORIGINS"))
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    # Credentials must not be combined with a wildcard origin.
+    allow_credentials="*" not in origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
