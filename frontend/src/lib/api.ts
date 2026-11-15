@@ -175,9 +175,9 @@ export async function uploadCSV(
   if (meta.machine_id) params.append("machine_id", meta.machine_id);
   if (meta.machine_name) params.append("machine_name", meta.machine_name);
   if (meta.machine_type) params.append("machine_type", meta.machine_type);
-  if (meta.runtime_hours)
+  if (meta.runtime_hours !== undefined)
     params.append("runtime_hours", meta.runtime_hours.toString());
-  if (meta.last_maintenance_days)
+  if (meta.last_maintenance_days !== undefined)
     params.append(
       "last_maintenance_days",
       meta.last_maintenance_days.toString()
