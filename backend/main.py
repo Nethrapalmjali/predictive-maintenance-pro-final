@@ -6,7 +6,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from config import parse_cors_origins
+from config import parse_cors_origins, parse_port
 from api.routes import router
 from api.websocket import router as ws_router
 
@@ -57,5 +57,5 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv("PORT", 8000))
+    port = parse_port(os.getenv("PORT"))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)

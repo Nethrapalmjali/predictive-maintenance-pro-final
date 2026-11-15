@@ -18,3 +18,15 @@ def test_strips_whitespace_and_trailing_slash():
         "http://localhost:3000",
         "https://app.example.com",
     ]
+
+
+def test_parse_port():
+    from config import parse_port
+
+    assert parse_port("9000") == 9000
+    assert parse_port(" 8080 ") == 8080
+    assert parse_port(None) == 8000
+    assert parse_port("abc") == 8000
+    assert parse_port("0") == 8000
+    assert parse_port("70000") == 8000
+    assert parse_port("abc", default=5000) == 5000
