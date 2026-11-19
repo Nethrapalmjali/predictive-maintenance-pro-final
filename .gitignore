@@ -35,3 +35,10 @@ maintenance.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+.env.*.local
