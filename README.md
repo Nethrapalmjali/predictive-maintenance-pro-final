@@ -54,6 +54,9 @@ Copy `backend/.env.example` to `backend/.env` and adjust:
 | `CORS_ORIGINS` | Comma-separated allowed origins, e.g. `http://localhost:3000` (defaults to `*`) |
 | `PORT` | API port (default `8000`) |
 
+### Frontend
+The Next.js API proxy (`frontend/src/app/api/v1`) forwards requests to the backend at `http://127.0.0.1:8000` by default. Set `BACKEND_URL` (e.g. `http://backend:8000`) in the frontend environment to point it elsewhere.
+
 ## 🧪 Tests
 ```bash
 pip install pytest
